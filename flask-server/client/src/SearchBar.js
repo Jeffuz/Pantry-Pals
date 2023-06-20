@@ -14,7 +14,7 @@ export function SearchBar() {
     event.preventDefault();
 
     try {
-      const response = await fetch(`/recipe?title=${searchQuery}`);
+      const response = await fetch(`http://localhost:5000/recipe?title=${searchQuery}`);
       if (!response.ok) {
         throw new Error('Failed to retrieve search results');
       }

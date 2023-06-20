@@ -2,6 +2,7 @@
 
 # dependencies
 flask-server/client/node_modules
+flask-server/env
 /.pnp
 .pnp.js
 

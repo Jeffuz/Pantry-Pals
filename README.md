@@ -21,11 +21,11 @@ git@github.com:Jeffuz/Pantry-Pal.git
 ```bash
 cd flask-server/client
 npm install
-npm install react-router-dom
 ```
 3. Install frontend dependencies
 ```bash
 cd flask-server/client
+npm install react-router-dom
 ```
 4. Set up [environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) variables
 ```bash

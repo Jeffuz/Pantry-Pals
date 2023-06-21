@@ -1,7 +1,7 @@
 import './App.css';
 
 //import RecipeComponent from './components/RecipeComponent';
-import RecipeSearchComponent from './components/RecipeSearchComponent';
+// import RecipeSearchComponent from './components/RecipeSearchComponent';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
@@ -13,9 +13,7 @@ function App() {
 
   return (
     <div>
-      
-      <RecipeSearchComponent/>
-    
+          
       <BrowserRouter>
         <Routes>
           <Route index element = {<Home />} />

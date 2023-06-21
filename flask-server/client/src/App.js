@@ -1,7 +1,7 @@
 import './App.css';
 
-//import RecipeComponent from './Components/RecipeComponent';
-import RecipeSearchComponent from './Components/RecipeSearchComponent';
+import RecipeSearchComponent from './components/RecipeSearchComponent';
+import LoginComponent from './components/login/LoginComponent';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
@@ -13,17 +13,17 @@ function App() {
 
   return (
     <div>
-      
+      <LoginComponent/>
       <RecipeSearchComponent/>
     
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
           <Route index element = {<Home />} />
           <Route path="/login" element = {<Login />} />
           <Route path="/recipe_result" element = {<RecipeResult />} />
           <Route path="*" element = {<NoPage />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </div>
   );
 }

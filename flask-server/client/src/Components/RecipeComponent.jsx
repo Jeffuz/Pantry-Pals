@@ -7,9 +7,9 @@ class RecipeComponent extends Component {
 
     this.recipeObject = props.recipeObject;
 
-    this.name = this.recipeObject.title;
-    this.ingredients = this.recipeObject.ingredients;
-    this.instructions = this.recipeObject.instructions;
+    this.name = props.name;
+    this.ingredients = props.ingredients;
+    // this.instructions = this.recipeObject.instructions;
     //this.image
   }
   displayIngredients() {

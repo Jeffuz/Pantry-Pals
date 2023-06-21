@@ -5,7 +5,7 @@ class RecipeSearchComponent extends Component {
   constructor(props) {
     super(props);
     // Pass objects into the recipe search component
-    this.names = ["bob", "mom", "234"];
+    this.names = [["bob", "1 Water", "drink water"], ["123", "1 Soda", "drink water"], ["momo", "1 Milk", "drink water"]];
 
     this.maxDisplay = props.maxDisplay;
     this.recipeList = null;
@@ -18,7 +18,7 @@ class RecipeSearchComponent extends Component {
     return(
       <div>
         {this.names.map(function(x){
-          return <RecipeComponent name={x}/>
+          return <RecipeComponent name={x[0]} ingredients={x[1]} instructions={x[2]}/>
         })}
       </div>
     );   

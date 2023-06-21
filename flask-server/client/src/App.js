@@ -8,7 +8,7 @@ function App() {
     <div>
       <h1>Recipe Search</h1>
       <SearchBar />
-      <RecipeComponent/>
+      
       <RecipeSearchComponent/>
     </div>
   );

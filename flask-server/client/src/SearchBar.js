@@ -79,6 +79,7 @@ export function SearchBar() {
             <button onClick={previousPage} disabled={currentPage === 1}>
               Previous Page
             </button>
+            
             <button
               onClick={nextPage}
               disabled={indexOfLastRecipe >= searchResults.length}

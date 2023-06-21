@@ -1,7 +1,7 @@
 import './App.css';
 
-import RecipeComponent from './Components/RecipeComponent';
-import RecipeSearchComponent from './Components/RecipeSearchComponent';
+import RecipeComponent from './components/RecipeComponent';
+import RecipeSearchComponent from './components/RecipeSearchComponent';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
@@ -13,8 +13,6 @@ function App() {
 
   return (
     <div>
-      <h1>Recipe Search</h1>
-      <SearchBar />
       <RecipeSearchComponent/>
     
     

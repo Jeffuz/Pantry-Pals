@@ -1,4 +1,3 @@
-import LoginTest from '../components/LoginTest'
 
 export default function(){
     return (

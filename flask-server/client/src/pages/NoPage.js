@@ -1,5 +1,4 @@
 
-import NoPageTest from '../components/NoPageTest'
 
 export default function NoPage(){
     return (

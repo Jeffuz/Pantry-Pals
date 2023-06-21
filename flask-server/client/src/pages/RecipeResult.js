@@ -1,4 +1,4 @@
-import RecipeResultTest from '../components/RecipeResultTest'
+
 
 export default function RecipeResult(){
     return (

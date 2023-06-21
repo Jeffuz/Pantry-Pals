@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 
+// Display Recipe Data boxes to preview
 class RecipeComponent extends Component {
   constructor(props) {
     super(props);
 
-    this.name = props.name;
-    this.ingredients = props.ingredients;
-    this.instructions = props.instructions;
+    this.recipeObject = props.recipeObject;
+
+    this.name = this.recipeObject.title;
+    this.ingredients = this.recipeObject.ingredients;
+    this.instructions = this.recipeObject.instructions;
     //this.image
   }
   displayIngredients() {
@@ -17,8 +20,7 @@ class RecipeComponent extends Component {
       <div>
         <p>This is a recipe {this.name}</p>
         <p>This is ingredients {this.ingredients}</p>
-        <p>This is instructions {this.instructions}</p>
-        <p>-----End of Recipe-----</p>
+        <p>-----End of Recipe Preview-----</p>
       </div>
     );
   } 

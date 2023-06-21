@@ -1,6 +1,6 @@
 import './App.css';
 
-import RecipeComponent from './Components/RecipeComponent';
+//import RecipeComponent from './Components/RecipeComponent';
 import RecipeSearchComponent from './Components/RecipeSearchComponent';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -13,8 +13,7 @@ function App() {
 
   return (
     <div>
-      <h1>Recipe Search</h1>
-      <SearchBar />
+      
       <RecipeSearchComponent/>
     
     

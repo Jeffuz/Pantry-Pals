@@ -1,8 +1,7 @@
 import './App.css';
 import { SearchBar } from './SearchBar';
 import RecipeComponent from './Components/RecipeComponent';
-import RecipeSearchComponent
- from './Components/RecipeSearchComponent';
+import RecipeSearchComponent from './Components/RecipeSearchComponent';
 function App() {
 
   return (

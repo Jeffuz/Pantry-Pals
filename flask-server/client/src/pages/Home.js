@@ -3,7 +3,8 @@ import { SearchBarComponent } from '../components/SearchBar';
 export default function Home(){
     return (
         <>
-            <h2>Home Page</h2>
+            <h1>Pantry Pal</h1>
+            <h3>Fresh Ideas, Straight from your Fridge</h3>
             <SearchBarComponent/>
         </>
     )

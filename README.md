@@ -1,5 +1,5 @@
 # Pantry-Pal
-Welcome to Pantry Pal - the ultimate destination for home cooks looking for recipe inspiration! We know that planning meals can be a daunting task, especially when you have limited ingredients or simply don't know what to make. That's why we've created a platform that allows you to easily search for recipes based on the ingredients you have at home.
+Welcome to Pantry Palw - the ultimate destination for home cooks looking for recipe inspiration! We know that planning meals can be a daunting task, especially when you have limited ingredients or simply don't know what to make. That's why we've created a platform that allows you to easily search for recipes based on the ingredients you have at home.
 
 Our user-friendly website lets you select the ingredients you have on hand, and generates recipe suggestions that you can easily make using what you already have. Whether you're a seasoned chef or just starting out, we have recipes for every level of expertise and dietary preferences. Our database includes thousands of recipes that are easy to make, healthy, and delicious.
 

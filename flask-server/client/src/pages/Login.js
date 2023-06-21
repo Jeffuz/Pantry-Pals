@@ -1,8 +1,8 @@
 
-export default function(){
+
+export default function Login(){
     return (
         <>
-            <LoginTest />
             <h2>Login Page</h2>
         </>
     )

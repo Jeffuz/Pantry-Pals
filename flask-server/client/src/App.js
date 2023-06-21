@@ -16,7 +16,6 @@ function App() {
       
       <RecipeSearchComponent/>
     
-    
       <BrowserRouter>
         <Routes>
           <Route index element = {<Home />} />

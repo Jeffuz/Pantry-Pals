@@ -12,7 +12,7 @@ With Pantry Pal, meal planning has never been easier. Say goodbye to endless scr
 - [Node.js](https://nodejs.org/en) v14 or higher installed on your machine
 - [MongoDB](https://www.mongodb.com/) set up and running
 
-### Installation (Linux)
+### Installation (Unix/macOS)
 1. Clone the repository
 ```bash
 git@github.com:Jeffuz/Pantry-Pal.git

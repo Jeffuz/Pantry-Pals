@@ -7,18 +7,20 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import RecipeResult from './pages/RecipeResult'
+import Recipe from './pages/Recipe';
 import NoPage from './pages/NoPage'
 
 function App() {
 
   return (
-    <div>  
+    <div>
       <BrowserRouter>
         <Routes>
-          <Route index element = {<Home />} />
-          <Route path="/login" element = {<Login />} />
-          <Route path="/recipe_result" element = {<RecipeResult />} />
-          <Route path="*" element = {<NoPage />} />
+          <Route index element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/recipe_result" element={<RecipeResult />} />
+          <Route path="/recipe/:id" element={<Recipe />} />
+          <Route path="*" element={<NoPage />} />
         </Routes>
       </BrowserRouter>
     </div>

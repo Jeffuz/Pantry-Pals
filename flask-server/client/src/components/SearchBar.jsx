@@ -19,7 +19,7 @@ export function SearchBarComponent() {
                 throw new Error('Failed to retrieve search results');
             }
             const data = await response.json();
-            navigate('/recipe_result', {state: {searchResults: data.recipe}});
+            navigate('/recipe_result', { state: { searchResults: data.recipe } });
         } catch (error) {
             console.error('Error:', error);
         }

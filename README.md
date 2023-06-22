@@ -1,5 +1,5 @@
-# Pantry-Pal
-Welcome to Pantry Pal - the ultimate destination for home cooks looking for recipe inspiration! We know that planning meals can be a daunting task, especially when you have limited ingredients or simply don't know what to make. That's why we've created a platform that allows you to easily search for recipes based on the ingredients you have at home.
+# Pantry-Pals
+Welcome to Pantry Pals - the ultimate destination for home cooks looking for recipe inspiration! We know that planning meals can be a daunting task, especially when you have limited ingredients or simply don't know what to make. That's why we've created a platform that allows you to easily search for recipes based on the ingredients you have at home.
 
 Our user-friendly website lets you select the ingredients you have on hand, and generates recipe suggestions that you can easily make using what you already have. Whether you're a seasoned chef or just starting out, we have recipes for every level of expertise and dietary preferences. Our database includes thousands of recipes that are easy to make, healthy, and delicious.
 
@@ -12,7 +12,7 @@ With Pantry Pal, meal planning has never been easier. Say goodbye to endless scr
 - [Node.js](https://nodejs.org/en) v14 or higher installed on your machine
 - [MongoDB](https://www.mongodb.com/) set up and running
 
-### Installation (Linux)
+### Installation (Unix/macOS)
 1. Clone the repository
 ```bash
 git@github.com:Jeffuz/Pantry-Pal.git
@@ -36,6 +36,36 @@ source env/bin/activate
 5. Start the backend server
 ```bash
 python3 server.py
+```
+6. Start the frontend server
+```bash
+npm start
+```
+
+### Installation (Windows)
+1. Clone the repository
+```bash
+git@github.com:Jeffuz/Pantry-Pal.git
+```
+2. Install frontend dependencies
+```bash
+cd flask-server/client
+npm install
+```
+3. Install frontend dependencies
+```bash
+cd flask-server/client
+npm install react-router-dom
+```
+4. Set up [environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) variables
+```bash
+python -m pip install --user virtualenv
+python -m venv env
+.\env\Scripts\activate
+```
+5. Start the backend server
+```bash
+python server.py
 ```
 6. Start the frontend server
 ```bash

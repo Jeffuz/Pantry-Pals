@@ -12,8 +12,7 @@ import NoPage from './pages/NoPage'
 function App() {
 
   return (
-    <div>
-          
+    <div>  
       <BrowserRouter>
         <Routes>
           <Route index element = {<Home />} />

@@ -19,7 +19,7 @@ export function RecipeDetails() {
 
         fetchRecipe();
     }, [id]);
-
+    
     return (
         <div>
             {recipe ? ( // Check if recipe data exists

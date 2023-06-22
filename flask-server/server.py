@@ -24,6 +24,22 @@ def recipe():
         return {"recipe": recipes}  # Return the matching recipes
     except Exception as e:
         return {"error": str(e)}, 500  # Return an error message if an exception occurs
-    
+
+@app.route("/recipe/<title>")
+def recipe_by_title(title):
+    try:
+        collection = mongo.db.Recipes  # Access the "Recipes" collection in the MongoDB database
+
+        # Perform a case-insensitive search for a recipe that matches the provided title
+        recipe = collection.find_one({"title": {"$regex": title, "$options": "i"}})
+
+        if recipe:
+            return {"recipe": recipe}
+        else:
+            return {"error": "Recipe not found"}, 404
+    except Exception as e:
+        return {"error": str(e)}, 500  # Return an error message if an exception occurs
+
+
 if __name__ == "__main__":
     app.run(debug=True)  # Run the Flask application in debug mode

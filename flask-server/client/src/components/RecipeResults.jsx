@@ -1,20 +1,21 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 export function RecipeResults() {
-    // Location object
     const location = useLocation();
-    // default to empty object
     const { searchResults } = location.state || {};
 
     return (
         <div>
+            <h1>Recipe Results</h1>
             {searchResults && searchResults.length > 0 ? (
                 <div>
                     {searchResults.map((recipe, index) => (
-                        <div key={index}>
-                            <p>{recipe.title}</p>
-                        </div>
+                        <Link key={index} to={`/recipe/${encodeURIComponent(recipe.title)}`}>
+                            <div>
+                                <h3>{recipe.title}</h3>
+                            </div>
+                        </Link>
                     ))}
                 </div>
             ) : (

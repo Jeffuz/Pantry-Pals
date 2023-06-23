@@ -13,8 +13,6 @@ function App() {
 
   return (
     <div>
-      <LoginComponent/>
-    
       <BrowserRouter>
         <Routes>
           <Route index element = {<Home />} />

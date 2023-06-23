@@ -3,9 +3,23 @@ from flask_pymongo import PyMongo
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/Pantry_Pals"  # MongoDB connection URI
+app.config['CORS_HEADERS'] = 'Content-Type'
 mongo = PyMongo(app)
+
+#Login Token
+@app.route("/login", methods=("GET", "POST"))
+def login():
+
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        print(username, password)
+
+    return("Token")
+
+    pass
 
 @app.route("/recipe")
 def recipe():
@@ -24,6 +38,6 @@ def recipe():
         return {"recipe": recipes}  # Return the matching recipes
     except Exception as e:
         return {"error": str(e)}, 500  # Return an error message if an exception occurs
-    
+
 if __name__ == "__main__":
     app.run(debug=True)  # Run the Flask application in debug mode

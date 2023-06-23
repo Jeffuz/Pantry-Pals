@@ -18,7 +18,7 @@ class RecipeSearchComponent extends Component {
     return(
       <div>
         {this.names.map(function(x){
-          return <RecipeComponent name={x[0]} ingredients={x[1]} instructions={x[2]}/>
+          return <RecipeComponent name={null}/>
         })}
       </div>
     );   

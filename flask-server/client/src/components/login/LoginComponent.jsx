@@ -10,6 +10,7 @@ export default function LoginComponent() {
     console.log(username, password);
   }
 
+  // Fetch data from database with username and password
   async function loginUser(credentials) {
     return fetch(`http://localhost:5000/login?`, {
       method: 'POST',
@@ -28,7 +29,9 @@ export default function LoginComponent() {
       username,
       password
     });
-    console.log("token=", token);
+    const data = await token.json();
+
+    console.log("token=", data.token);
   }
 
   return(

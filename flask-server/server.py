@@ -14,13 +14,18 @@ def login():
 
     if request.method == 'POST':
         json = request.get_json()
+        
+        print(json["username"], json["password"])
 
-        print(json)
-
-    return("Token")
-
-    pass
-
+        # Check if login credentials match
+        if(json["username"] == '1' and json["password"] == '2'):
+            print("Login is correct")
+            return {"token": "test Granted"}
+        else:
+            print("Incorrect Credentials")
+            return {"token": "Test Failed"}
+        # Else Fail
+    return("test")
 @app.route("/recipe")
 def recipe():
     try:

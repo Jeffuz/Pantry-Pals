@@ -47,27 +47,31 @@ npm start
 ```bash
 git@github.com:Jeffuz/Pantry-Pal.git
 ```
-2. Install frontend dependencies
+2. Enable Scripts on Powershell (admin)
 ```bash
-cd flask-server/client
-npm install
+Set-ExecutionPolicy RemoteSigned
 ```
 3. Install frontend dependencies
 ```bash
 cd flask-server/client
+npm install
+```
+4. Install frontend dependencies
+```bash
+cd flask-server/client
 npm install react-router-dom
 ```
-4. Set up [environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) variables
+5. Set up [environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) variables
 ```bash
 python -m pip install --user virtualenv
 python -m venv env
 .\env\Scripts\activate
 ```
-5. Start the backend server
+6. Start the backend server
 ```bash
 python server.py
 ```
-6. Start the frontend server
+7. Start the frontend server
 ```bash
 npm start
 ```

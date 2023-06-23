@@ -13,9 +13,9 @@ mongo = PyMongo(app)
 def login():
 
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        print(username, password)
+        json = request.get_json()
+
+        print(json)
 
     return("Token")
 

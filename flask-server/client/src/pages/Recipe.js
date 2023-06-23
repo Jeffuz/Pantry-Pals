@@ -1,7 +1,7 @@
 import React from 'react';
 import { RecipeDetails } from '../components/RecipeDetails';
 
-function Recipe() {
+export default function Recipe() {
     return (
         <div>
             <h1>Recipe Page</h1>
@@ -10,4 +10,4 @@ function Recipe() {
     );
 }
 
-export default Recipe;
+

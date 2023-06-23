@@ -8,6 +8,10 @@ export default function Home() {
             <h3>Fresh Ideas, Straight from your Fridge</h3>
             {/* Search Bar */}
             <SearchBarComponent />
+            {/* Log In Filter Search */}
+            <Link to="/filter">
+                <button>Filter Your Interest</button>
+            </Link>
 
             {/* Log In Button */}
             <Link to="/login">

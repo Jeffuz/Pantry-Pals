@@ -21,16 +21,15 @@ git@github.com:Jeffuz/Pantry-Pal.git
 ```bash
 cd flask-server/client
 npm install
-```
-3. Install frontend dependencies
-```bash
-cd flask-server/client
 npm install react-router-dom
 ```
-4. Set up [environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) variables
+3. Set up [environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) variables
 ```bash
 python3 -m pip install --user virtualenv
 python3 -m venv env
+```
+4. Enable Virtual Environment 
+```bash
 source env/bin/activate
 ```
 5. Start the backend server
@@ -55,16 +54,15 @@ Set-ExecutionPolicy RemoteSigned
 ```bash
 cd flask-server/client
 npm install
-```
-4. Install frontend dependencies
-```bash
-cd flask-server/client
 npm install react-router-dom
 ```
-5. Set up [environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) variables
+4. Set up [environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/) variables
 ```bash
 python -m pip install --user virtualenv
 python -m venv env
+```
+5. Enable Virtual Environment 
+```bash
 .\env\Scripts\activate
 ```
 6. Start the backend server

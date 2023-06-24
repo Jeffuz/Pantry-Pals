@@ -33,6 +33,7 @@ export function SearchBarComponent() {
                     onChange={handleSearchInputChange}
                 />
                 <button type="submit">Search</button>
+                <button type="submit" class="absolute right-0 top-0 mt-5 mr-4"></button>
             </form>
         </div>
     );

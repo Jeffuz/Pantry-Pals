@@ -1,4 +1,4 @@
-
+import { FilterComponent } from "../components/RecipeFilter";
 
 
 export default function Filter() {

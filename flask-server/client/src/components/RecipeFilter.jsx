@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function FilterComponent() {
     const [ingredients, setIngredients] = useState([]);
     const [inputValue, setInputValue] = useState('');
+    const navigate = useNavigate();
 
     function handleInputChange(event) {
         const { value } = event.target;
@@ -28,6 +30,10 @@ export function FilterComponent() {
         setIngredients(updatedIngredients);
     }
 
+    function handleSearchRecipes() {
+        navigate(`/recipe_result?ingredients=${ingredients.join(',')}`);
+    }
+
     return (
         <div>
             <input
@@ -49,12 +55,24 @@ export function FilterComponent() {
             </ul>
 
             {/* <div>
-        <ul>
-          {ingredients.map((ingredient, index) => (
-            <li key={index}>{ingredient}</li>
-          ))}
-        </ul>
-      </div> */}
+                <ul>
+                    {ingredients.map((ingredient, index) => (
+                        <li key={index}>{ingredient}</li>
+                    ))}
+                </ul>
+            </div> */}
+            <button onClick={handleSearchRecipes}>Search Recipes</button>
         </div>
     );
 }
+
+
+
+
+
+
+
+
+
+
+

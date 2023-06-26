@@ -3,15 +3,29 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
     return (
-        <div class="h-screen bg-lime-900">
-            {/* <div class="h-screen bg-gradient-to-r from-cyan-500 to-blue-500"></div> */}
+        <div class="h-screen
+        bg-[url(https://images.pexels.com/photos/6833705/pexels-photo-6833705.jpeg)] 
+        bg-no-repeat">
 
-            <div class="items-center">
-                <p className="text-6xl text-gray-50 font-serif text-right">
+            {/* Log In Button */}
+            <Link to="/login">
+                <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-4 rounded inline-flex items-center
+                absolute right-5 top-5">
+                    Log In
+                </button>
+            </Link>
+            
+            <div class="static">
+                <div class="static">
+                <p className="text-6xl text-gray-50 font-serif text-left">
                     Pantry <br /> Pal
                 </p>
+                </div>
+                <div class="inline-block">
                 <p className="text-1xl text-gray-50 font-serif">Fresh Ideas, Straight from your Fridge</p>
+                </div>
             </div>
+            
             {/* Search Bar */}
             <SearchBarComponent />
             {/* Log In Filter Search */}
@@ -20,13 +34,8 @@ export default function Home() {
                     Filter Your Interest
                 </button>
             </Link>
+            </div>
 
-            {/* Log In Button */}
-            <Link to="/login">
-                <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-                    Log In
-                    </button>
-            </Link>
-        </div>
+    
     )
 }

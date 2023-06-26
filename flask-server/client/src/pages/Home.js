@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 export default function Home() {
     return (
         <div class="h-screen
-        bg-[url(https://images.pexels.com/photos/6833705/pexels-photo-6833705.jpeg)] 
-        bg-no-repeat">
+        bg-[url(https://wallpaperaccess.com/full/3086351.jpg)] 
+        bg-cover bg-center">
 
             {/* Log In Button */}
             <Link to="/login">
@@ -14,18 +14,18 @@ export default function Home() {
                     Log In
                 </button>
             </Link>
-            
+
             <div class="static">
                 <div class="static">
-                <p className="text-6xl text-gray-50 font-serif text-left">
-                    Pantry <br /> Pal
-                </p>
+                    <p className="text-6xl text-gray-50 font-serif text-left">
+                        Pantry <br /> Pal
+                    </p>
                 </div>
                 <div class="inline-block">
-                <p className="text-1xl text-gray-50 font-serif">Fresh Ideas, Straight from your Fridge</p>
+                    <p className="text-1xl text-gray-50 font-serif">Fresh Ideas, Straight from your Fridge</p>
                 </div>
             </div>
-            
+
             {/* Search Bar */}
             <SearchBarComponent />
             {/* Log In Filter Search */}
@@ -34,8 +34,8 @@ export default function Home() {
                     Filter Your Interest
                 </button>
             </Link>
-            </div>
+        </div>
 
-    
+
     )
 }

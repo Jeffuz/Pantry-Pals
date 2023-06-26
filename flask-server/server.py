@@ -26,6 +26,7 @@ def login():
             return {"token": "Test Failed"}
         # Else Fail
     return("test")
+
 @app.route("/recipe")
 def recipe():
     try:

@@ -30,7 +30,7 @@ export function SearchBarComponent() {
                 <div class='flex space-x-4'>
                     <input 
                         class="border-none bg-white px-5 py-2 pr-20 rounded text-sm focus:outline-none"
-                        placeholder="Search"
+                        placeholder="Enter You Food here!"
                         type="text"
                         value={searchQuery}
                         onChange={handleSearchInputChange}

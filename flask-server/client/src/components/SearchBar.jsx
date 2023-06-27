@@ -35,8 +35,10 @@ export function SearchBarComponent() {
                         value={searchQuery}
                         onChange={handleSearchInputChange}
                     />
-                    <button className="transition duration-200 delay-100 bg-gray-500 hover:bg-gray-300 text-gray-100  hover:text-gray-800 font-bold px-2 rounded inline-flex items-center" type="submit">
-                        Search
+                    <button className="transition duration-200 delay-100 bg-gray-500 hover:bg-gray-300 text-gray-100  hover:text-gray-800 px-2 rounded inline-flex items-center" type="submit">
+                        <p className="font-serif">
+                            Search
+                        </p>
                     </button>
                     
                 </div>

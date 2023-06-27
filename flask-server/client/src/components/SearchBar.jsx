@@ -29,13 +29,13 @@ export function SearchBarComponent() {
             <form onSubmit={handleSearchSubmit} autoComplete="off">
                 <div class='flex space-x-4'>
                     <input 
-                        class="border-none bg-white px-5 py-2 pr-20 rounded text-sm focus:outline-none"
+                        class="bg-gray-150 border-none px-14 py-2 pr-20 rounded text-sm focus:outline-none"
                         placeholder="Enter You Food here!"
                         type="text"
                         value={searchQuery}
                         onChange={handleSearchInputChange}
                     />
-                    <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold px-2 rounded inline-flex items-center" type="submit">
+                    <button className="transition duration-200 delay-100 bg-gray-500 hover:bg-gray-300 text-gray-100  hover:text-gray-800 font-bold px-2 rounded inline-flex items-center" type="submit">
                         Search
                     </button>
                     

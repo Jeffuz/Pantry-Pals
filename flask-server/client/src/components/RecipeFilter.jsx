@@ -31,8 +31,9 @@ export function FilterComponent() {
     }
 
     function handleSearchRecipes() {
-        navigate(`/recipe_result?ingredients=${ingredients.join(',')}`);
+        navigate(`/filter_result?ingredients=${ingredients.join(',')}`);
     }
+
 
     return (
         <div>

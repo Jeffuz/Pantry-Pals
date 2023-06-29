@@ -1,7 +1,24 @@
-function compareLists(list1, list2) {
+// function compareLists(list1, list2) {
+//     for (let item of list1) {
+//       let found = false;
+//       for (let string of list2) {
+//         if (string.includes(item)) {
+//           found = true;
+//           break;
+//         }
+//       }
+//       if (!found) {
+//         return false;
+//       }
+//     }
+//     return true;
+//   }
+
+  function compareLists(list1, list2) {
+    let itemSet = new Set(list2);
     for (let item of list1) {
       let found = false;
-      for (let string of list2) {
+      for (let string of itemSet) {
         if (string.includes(item)) {
           found = true;
           break;

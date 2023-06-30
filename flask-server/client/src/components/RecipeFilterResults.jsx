@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 export function FilterResults() {
     const location = useLocation();
@@ -57,7 +59,9 @@ export function FilterResults() {
                 <div>
                     <ul>
                         {recipeTitles.map((title, index) => (
-                            <li key={index}>{title}</li>
+                            <li key={index}>
+                                <Link to={`/recipe/${encodeURIComponent(title)}`}>{title}</Link>
+                            </li>
                         ))}
                     </ul>
                     <div>

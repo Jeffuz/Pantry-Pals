@@ -110,6 +110,5 @@ def filter_recipes():
     except Exception as e:
         return {"error": str(e)}, 500  # Return an error message if an exception occurs
 
-
 if __name__ == "__main__":
     app.run(debug=True)  # Run the Flask application in debug mode

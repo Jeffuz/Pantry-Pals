@@ -1,8 +1,5 @@
 import './App.css';
 
-//import RecipeComponent from './components/RecipeComponent';
-// import RecipeSearchComponent from './components/RecipeSearchComponent';
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -13,7 +10,6 @@ import NoPage from './pages/NoPage'
 import FilterResult from './pages/FilterResult';
 
 function App() {
-
   return (
     <div>
       <BrowserRouter>
@@ -29,6 +25,6 @@ function App() {
       </BrowserRouter>
     </div>
   );
-} 
+}
 
 export default App;

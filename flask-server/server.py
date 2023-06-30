@@ -1,6 +1,8 @@
 from flask import Flask, request
 from flask_pymongo import PyMongo
 from flask_cors import CORS
+import math
+
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -76,9 +78,13 @@ def filter_recipes():
     try:
         collection = mongo.db.Recipes  # Access the "Recipes" collection in the MongoDB database
 
-        # Retrieve the "ingredients" parameter from the query string
+        # Retrieve the "ingredients" and "page" parameters from the query string
         ingredients = request.args.get("ingredients")
         ingredient_list = ingredients.split(",") if ingredients else []
+
+        # Retrieve the "page" parameter from the query string, default to 1 if not provided
+        page = int(request.args.get("page", 1))
+        items_per_page = 20
 
         # Fetch all recipes from the database
         recipes = list(collection.find({}))
@@ -89,10 +95,21 @@ def filter_recipes():
             if "ingredients" in recipe and compareLists(ingredient_list, recipe["ingredients"]):
                 filtered_recipes.append(recipe)
 
-        return {"recipe": filtered_recipes}  # Return the filtered recipes
+        total_items = len(filtered_recipes)
+        start_index = (page - 1) * items_per_page
+        end_index = start_index + items_per_page
+        paginated_recipes = filtered_recipes[start_index:end_index]
+
+        total_pages = math.ceil(total_items / items_per_page)
+
+        return {
+            "recipe": paginated_recipes,
+            "totalPages": total_pages
+        }  # Return the filtered recipes with pagination information
 
     except Exception as e:
-        raise  # Reraise the exception to get the full traceback
+        return {"error": str(e)}, 500  # Return an error message if an exception occurs
+
 
 if __name__ == "__main__":
     app.run(debug=True)  # Run the Flask application in debug mode

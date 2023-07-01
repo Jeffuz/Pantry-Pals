@@ -5,7 +5,7 @@ export function RecipeResults() {
     const location = useLocation();
     const { searchResults } = location.state || {};
     const [currentPage, setCurrentPage] = useState(1);
-    const recipesPerPage = 20;
+    const recipesPerPage = 50;
 
     // Calculate the index range of recipes to display on the current page
     const indexOfLastRecipe = currentPage * recipesPerPage;

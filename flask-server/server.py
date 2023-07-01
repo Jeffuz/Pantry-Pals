@@ -62,16 +62,7 @@ def recipe_by_title(title):
         return {"error": str(e)}, 500  # Return an error message if an exception occurs
     
 def compareLists(list1, list2):
-    for item in list1:
-        found = False
-        for string in list2:
-            if item in string:
-                found = True
-                break
-        if not found:
-            return False
-    return True
-
+    return all(any(item in string for string in list2) for item in list1)
 
 @app.route("/filter")
 def filter_recipes():
@@ -84,7 +75,7 @@ def filter_recipes():
 
         # Retrieve the "page" parameter from the query string, default to 1 if not provided
         page = int(request.args.get("page", 1))
-        items_per_page = 20
+        items_per_page = 50
 
         # Fetch all recipes from the database
         recipes = list(collection.find({}))

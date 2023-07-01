@@ -75,7 +75,7 @@ def filter_recipes():
 
         # Retrieve the "page" parameter from the query string, default to 1 if not provided
         page = int(request.args.get("page", 1))
-        items_per_page = 20
+        items_per_page = 50
 
         # Fetch all recipes from the database
         recipes = list(collection.find({}))

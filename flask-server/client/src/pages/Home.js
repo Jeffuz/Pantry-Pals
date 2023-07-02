@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
     const [backgroundImage, setBackgroundImage] = useState('');
-
+    
     useEffect(() => {
         // Array of image URLs
         const imageUrls = [

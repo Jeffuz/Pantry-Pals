@@ -1,11 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+function setToken(userToken) {
+
+}
+function getToken() {
+  const tokenString = sessionStorage.getItem('token');
+  return tokenString;
+}
+
 export default function LoginComponent() {
 
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   
+  const token = getToken();
+  console.log("token", token);
+  if(token) {
+    console.log("logged in as", token);
+  }
+  else {
+    console.log("Need to log in");
+  }
   const display = event => {
     console.log(username, password);
   }
@@ -31,7 +47,14 @@ export default function LoginComponent() {
     });
     const data = await token.json();
 
-    console.log("token=", data.token);
+    // Data Received can set state
+    console.log("token=", data);
+
+    if(data.id != '') {
+      console.log("Logged in", data.id);
+      sessionStorage.setItem('token', data.id);
+
+    }
   }
 
   return(

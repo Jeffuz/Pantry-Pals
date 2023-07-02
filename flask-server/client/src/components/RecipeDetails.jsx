@@ -19,7 +19,23 @@ export function RecipeDetails() {
 
         fetchRecipe();
     }, [id]);
-    
+
+    const renderInstructions = () => {
+        if (recipe && recipe.instructions) {
+            const sentences = recipe.instructions.split('.'); // Split instructions into sentences
+            return (
+                <ul>
+                    {sentences
+                        .filter((sentence) => sentence.trim() !== '') // Exclude empty or false sentences
+                        .map((sentence, index) => (
+                            <li key={index}>{sentence}</li>
+                        ))}
+                </ul>
+            );
+        }
+        return null;
+    };
+
     return (
         <div>
             {recipe ? ( // Check if recipe data exists
@@ -39,7 +55,8 @@ export function RecipeDetails() {
                         )}
                     </ul>
 
-                    <p>Instructions: {recipe.instructions}</p>
+                    <p>Instructions:</p>
+                    {renderInstructions()}
                 </div>
             ) : (
                 <p>Loading recipe...</p> // Display a loading message while fetching the recipe

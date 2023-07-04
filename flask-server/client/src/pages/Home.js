@@ -56,7 +56,7 @@ export default function Home() {
                     <Link to="/filter">
                         <button className="transition duration-200 delay-100 bg-gray-500 hover:bg-gray-300  hover:text-gray-800  text-gray-100 py-1.5 px-4 rounded inline-flex items-center">
                             <p className="font-serif">
-                                Filter Your Interests
+                                Search by Ingredients
                             </p>
                         </button>
                     </Link>

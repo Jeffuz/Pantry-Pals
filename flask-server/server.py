@@ -14,19 +14,38 @@ mongo = PyMongo(app)
 # Login Token
 @app.route("/login", methods=("GET", "POST"))
 def login():
+    # Get List of current users in the database.
+    users = mongo.db.Users;
+    print(users);
+
+    isValid = False
+    validUserID = None
+    # Return user ID if found user
     if request.method == 'POST':
         json = request.get_json()
 
-        print(json["username"], json["password"])
+        user = list(users.find({ "Username": json["username"]}))
 
-        # Check if login credentials match
-        if(json["username"] == '1' and json["password"] == '2'):
-            print("Login is correct")
-            return {"token": "test Granted"}
-        else:
-            print("Incorrect Credentials")
-            return {"token": "Test Failed"}
-    return "test"
+        for x in user:
+            if x["Password"] == json["password"]:
+                isValid = True
+                validUserID = x["_id"]
+
+    # Return UserID and token
+    if isValid:
+        idString = str(validUserID)
+        return {
+            "id": idString,
+            "token": "valid",
+            "error": ""
+        }
+    
+    # Cannot find user / no match
+    return {
+        "id": "",
+        "token": "invalid",
+        "error": "Username or Password does not match"
+    }
 
 @app.route("/recipe")
 def recipe():

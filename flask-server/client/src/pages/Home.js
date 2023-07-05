@@ -2,8 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { SearchBarComponent } from '../components/SearchBar';
 import { Link } from 'react-router-dom';
 
+function getToken()
+{
+    const tokenString = sessionStorage.getItem('token');
+    return tokenString;
+}
+
 export default function Home() {
     const [backgroundImage, setBackgroundImage] = useState('');
+
+    const token = getToken();
+
+    if(token) {
+        console.log("logged in as", token);
+    }
+    else {
+        console.log("Need to log in");
+    }
 
     useEffect(() => {
         // Array of image URLs
@@ -25,13 +40,24 @@ export default function Home() {
         <div className="h-screen bg-cover bg-center"
             style={{ backgroundImage: `url(${backgroundImage})` }}>
             {/* Log In Button */}
-            <Link to="/login">
-                <button className="transition duration-200 delay-100 bg-gray-300 hover:bg-gray-500 text-gray-800  hover:text-gray-100 font-bold py-1 px-4 rounded inline-flex items-center absolute right-5 top-5">
-                    <p className="font-serif">
-                        Log In
-                    </p>
-                </button>
-            </Link>
+            { token ? (
+                <Link to="/login">
+                    <button className="transition duration-200 delay-100 bg-gray-300 hover:bg-gray-500 text-gray-800  hover:text-gray-100 font-bold py-1 px-4 rounded inline-flex items-center absolute right-5 top-5">
+                        <p className="font-serif">
+                            View Profile Still Links to login
+                        </p>
+                    </button>
+                </Link>   
+            ) : ( // User needs to log in to see profile
+                <Link to="/login">
+                    <button className="transition duration-200 delay-100 bg-gray-300 hover:bg-gray-500 text-gray-800  hover:text-gray-100 font-bold py-1 px-4 rounded inline-flex items-center absolute right-5 top-5">
+                        <p className="font-serif">
+                            Log In
+                        </p>
+                    </button>
+                </Link>                
+            )}
+
 
             <div className="ml-10 absolute top-14">
                 <div className="mt-14">

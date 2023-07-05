@@ -65,24 +65,24 @@ export default function LoginComponent() {
   }
 
   return(
-    <div class="flex p-11 mx-auto my-auto shadow-lg shadow-cyan-600/50 rounded-md">
-      <div class="flex">
+    <div className="flex p-11 mx-auto my-auto shadow-lg shadow-cyan-600/50 rounded-md">
+      <div className="flex">
       </div>
-      <div class="flex flex-col">
-        <h1 class="text-3xl">Login</h1>
+      <div className="flex flex-col">
+        <h1 className="text-3xl">Login</h1>
         <br/>
         <form>
-          <label class="text-xl">Username:</label> 
+          <label className="text-xl">Username:</label> 
           <br/>
-          <input class="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="text" onChange={e => setUsername(e.target.value) }/> 
+          <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="text" onChange={e => setUsername(e.target.value) }/> 
           <br/>
-          <label class="text-xl">Password:</label> 
+          <label className="text-xl">Password:</label> 
           <br/>
-          <input class="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="password" onChange={e => setPassword(e.target.value) }/> 
+          <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="password" onChange={e => setPassword(e.target.value) }/> 
           <br/>
-          <label class="transition duration-200 text-lg text-red-900" onchange="shake" key={errorMessage}>{errorMessage}</label> {errorMessage !== null ? <br/> : ''}
+          <label className="transition duration-200 text-lg text-red-900" onchange="shake" key={errorMessage}>{errorMessage}</label> {errorMessage !== null ? <br/> : ''}
 
-          <button class="transition duration-200 delay-50 bg-gray-300 text-xl 
+          <button className="transition duration-200 delay-50 bg-gray-300 text-xl 
                         shadow-sm shadow-stone-500 rounded-lg px-2 
                         hover:bg-emerald-200 hover:shadow-lg
                         mt-2" 

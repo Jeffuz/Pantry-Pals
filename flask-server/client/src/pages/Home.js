@@ -41,10 +41,10 @@ export default function Home() {
             style={{ backgroundImage: `url(${backgroundImage})` }}>
             {/* Log In Button */}
             { token ? (
-                <Link to="/">
+                <Link to="/login">
                     <button className="transition duration-200 delay-100 bg-gray-300 hover:bg-gray-500 text-gray-800  hover:text-gray-100 font-bold py-1 px-4 rounded inline-flex items-center absolute right-5 top-5">
                         <p className="font-serif">
-                            View Profile
+                            View Profile Still Links to login
                         </p>
                     </button>
                 </Link>   

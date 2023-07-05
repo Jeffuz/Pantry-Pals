@@ -93,7 +93,6 @@ export default function LoginComponent() {
       <div>
 
       </div>
-      {/* <button onClick={clearSessionData}>Debug Remove SessionData</button> */}
     </div>      
   );
 }

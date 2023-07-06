@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const PASSWORDLENGTH = '6';
+const NUMBEROFCAPITALLETTERS = '1';
+
 function getToken() {
   const tokenString = sessionStorage.getItem('token');
   return tokenString;
@@ -78,7 +81,7 @@ export default function LoginComponent() {
     event.preventDefault();
     console.log(email, password);
     // Check email and password fit requirements
-    const emailCheck = /[\w]+\@[A-Za-z]+\.(.){3,}/g
+    const emailCheck = /[\w]+@[A-Za-z]+\.(.){3,}/g
     let isValidEmail = emailCheck.test(email);
     console.log(isValidEmail, "EmailValid");
 
@@ -86,9 +89,27 @@ export default function LoginComponent() {
     const passLengthCheck = /(.+){6,}/g
     const passSpecialCharacterCheck = /[-’/`~!#*$@_%+=.,^&(){}[\]|;:”<>?\\]/g
     const passUpperCaseCheck = /[A-Z]+/g
+    let isPLength = passLengthCheck.test(password);
+    let isPSpecial = passSpecialCharacterCheck.test(password);
+    let isPUpper = passUpperCaseCheck.test(password);
     console.log(passLengthCheck.test(password), "Length");
     console.log(passSpecialCharacterCheck.test(password), "Special Character");
     console.log(passUpperCaseCheck.test(password), "UpperCase");
+    
+    // Condition Check if valid
+    if(!isValidEmail){
+      setErrorMessage("Email is Invalid");
+      return;
+    }
+    if(!isPLength)
+      setErrorMessage("Password needs to be " + PASSWORDLENGTH + " or more characters long");
+    if(!isPSpecial)
+      setErrorMessage("Password needs at least " + NUMBEROFCAPITALLETTERS + " special character");
+    if(!isPUpper)
+      setErrorMessage("Passwords needs at least " + NUMBEROFCAPITALLETTERS + " uppercase letter")
+    
+    if(!isPLength || !isPSpecial || !isPUpper)
+      return;
 
     //==========================================
     const result = await signupUser({
@@ -98,7 +119,7 @@ export default function LoginComponent() {
 
     const jResult = await result.json();
     if(jResult.error === '') { // Success Sign up
-
+        navigate(-1);
     }
     else {
       setErrorMessage(jResult.error);

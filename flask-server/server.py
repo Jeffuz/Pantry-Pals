@@ -10,7 +10,6 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/Pantry_Pals"  # MongoDB con
 app.config['CORS_HEADERS'] = 'Content-Type'
 mongo = PyMongo(app)
 
-
 # Login Token
 @app.route("/login", methods=("GET", "POST"))
 def login():
@@ -24,7 +23,7 @@ def login():
     if request.method == 'POST':
         json = request.get_json()
 
-        user = list(users.find({ "Username": json["username"]}))
+        user = list(users.find({ "Email": json["email"]}))
 
         for x in user:
             if x["Password"] == json["password"]:
@@ -44,8 +43,24 @@ def login():
     return {
         "id": "",
         "token": "invalid",
-        "error": "Username or Password does not match"
+        "error": "Email or Password does not match"
     }
+
+@app.route("/signup", methods=("GET", "POST"))
+def signup():
+    isDuplicate = False
+
+    if request.method == 'POST':
+        json = request.get_json()
+
+        users = mongo.db.Users;
+        users.insert_one({
+                "Email": json["email"],
+                "Password": json["password"],
+                "Bookmarks": [],
+            })
+        
+    return {"error": ''}
 
 @app.route("/recipe")
 def recipe():

@@ -66,7 +66,13 @@ export default function LoginComponent() {
 
 
   async function signupUser(credentials) {
-
+    return fetch(`http://localhost:5000/signup?`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+    })
   }
   const handleSignup = async(event) => {
     event.preventDefault();
@@ -83,19 +89,22 @@ export default function LoginComponent() {
     console.log(passLengthCheck.test(password), "Length");
     console.log(passSpecialCharacterCheck.test(password), "Special Character");
     console.log(passUpperCaseCheck.test(password), "UpperCase");
+
     //==========================================
-    // const result = await signupUser({
-    //   email,
-    //   password
-    // });
+    const result = await signupUser({
+      email,
+      password
+    });
 
-    // const jResult = await result.json();
-    // if(jResult.error === '') { // Success Sign up
+    const jResult = await result.json();
+    if(jResult.error === '') { // Success Sign up
 
-    // }
-    // else {
-    //   // Failed Sign up
-    // }
+    }
+    else {
+      setErrorMessage(jResult.error);
+      // Display jResult.errormsg
+      // Failed Sign up
+    }
   }
 
   return(

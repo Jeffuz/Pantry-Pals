@@ -115,11 +115,8 @@ export default function LoginComponent() {
     if(jResult.error === '') { // Success Sign up
         navigate(-1);
     }
-    else {
+    else
       setErrorMessage(jResult.error);
-      // Display jResult.errormsg
-      // Failed Sign up
-    }
   }
 
   return(

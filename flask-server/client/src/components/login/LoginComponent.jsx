@@ -79,22 +79,17 @@ export default function LoginComponent() {
   }
   const handleSignup = async(event) => {
     event.preventDefault();
-    console.log(email, password);
     // Check email and password fit requirements
     const emailCheck = /[\w]+@[A-Za-z]+\.(.){3,}/g
-    let isValidEmail = emailCheck.test(email);
-    console.log(isValidEmail, "EmailValid");
-
-
     const passLengthCheck = /(.+){6,}/g
     const passSpecialCharacterCheck = /[-’/`~!#*$@_%+=.,^&(){}[\]|;:”<>?\\]/g
     const passUpperCaseCheck = /[A-Z]+/g
+
+    let isValidEmail = emailCheck.test(email);
     let isPLength = passLengthCheck.test(password);
     let isPSpecial = passSpecialCharacterCheck.test(password);
     let isPUpper = passUpperCaseCheck.test(password);
-    console.log(passLengthCheck.test(password), "Length");
-    console.log(passSpecialCharacterCheck.test(password), "Special Character");
-    console.log(passUpperCaseCheck.test(password), "UpperCase");
+
     
     // Condition Check if valid
     if(!isValidEmail){

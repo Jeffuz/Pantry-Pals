@@ -61,9 +61,8 @@ export default function LoginComponent() {
       // Return back to home / prior tab
       navigate(-1);
     }
-    else {// Failed Login
+    else // Failed Login
       setErrorMessage("Incorrect Username or Password");
-    }
 
   }
 

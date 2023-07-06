@@ -54,6 +54,10 @@ def signup():
         json = request.get_json()
 
         users = mongo.db.Users;
+
+        user = list(users.find({ "Email": json["email"]}))
+        if len(user) > 0:
+            return {"error": "Account for email already exists."}
         users.insert_one({
                 "Email": json["email"],
                 "Password": json["password"],

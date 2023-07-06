@@ -8,7 +8,7 @@ function getToken() {
 
 export default function LoginComponent() {
 
-  const [username, setUsername] = useState(null);
+  const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -16,13 +16,13 @@ export default function LoginComponent() {
   const navigate = useNavigate();
 
   // Debugging
-  console.log("token", token);
-  if(token) {
-    console.log("logged in as", token);
-  }
-  else {
-    console.log("Need to log in");
-  }
+  // console.log("token", token);
+  // if(token) {
+  //   console.log("logged in as", token);
+  // }
+  // else {
+  //   console.log("Need to log in");
+  // }
   //End of Debug
 
   function clearSessionData() {
@@ -38,13 +38,13 @@ export default function LoginComponent() {
       body: JSON.stringify(credentials)
     })
    }
-
+  
   const handleLogin = async(event) => {
     event.preventDefault();
 
-    console.log(username, password);
+    console.log(email, password);
     const token = await loginUser({
-      username,
+      email,
       password
     });
     const data = await token.json();
@@ -64,17 +64,73 @@ export default function LoginComponent() {
 
   }
 
+
+  async function signupUser(credentials) {
+
+  }
+  const handleSignup = async(event) => {
+    event.preventDefault();
+    console.log(email, password);
+    // Check email and password fit requirements
+    const emailCheck = /[\w]+\@[A-Za-z]+\.(.){3,}/g
+    let isValidEmail = emailCheck.test(email);
+    console.log(isValidEmail, "EmailValid");
+
+
+    const passLengthCheck = /(.+){6,}/g
+    const passSpecialCharacterCheck = /[-’/`~!#*$@_%+=.,^&(){}[\]|;:”<>?\\]/g
+    const passUpperCaseCheck = /[A-Z]+/g
+    console.log(passLengthCheck.test(password), "Length");
+    console.log(passSpecialCharacterCheck.test(password), "Special Character");
+    console.log(passUpperCaseCheck.test(password), "UpperCase");
+    //==========================================
+    // const result = await signupUser({
+    //   email,
+    //   password
+    // });
+
+    // const jResult = await result.json();
+    // if(jResult.error === '') { // Success Sign up
+
+    // }
+    // else {
+    //   // Failed Sign up
+    // }
+  }
+
   return(
-    <div className="flex p-11 mx-auto my-auto shadow-lg shadow-cyan-600/50 rounded-md">
-      <div className="flex">
+    <div className="flex p-11 mx-auto my-auto shadow-lg shadow-emerald-600/50 rounded-md">
+      {/* Sign Up Markup */}
+      <div>
+        <h1 className="text-3xl">Sign Up</h1>
+        <form>
+          <label className="text-xl">Email:</label> 
+          <br/>
+          <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="text" onChange={e => setEmail(e.target.value) }/> 
+          <br/>
+          <label className="text-xl">Password:</label> 
+          <br/>
+          <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="password" onChange={e => setPassword(e.target.value) }/> 
+          <br/>
+          <label className="transition duration-200 text-lg text-red-900" onchange="shake" key={errorMessage}>{errorMessage}</label> {errorMessage !== null ? <br/> : ''}
+
+          <button className="transition duration-200 delay-50 bg-gray-300 text-xl 
+                        shadow-sm shadow-stone-500 rounded-lg px-2 
+                        hover:bg-emerald-200 hover:shadow-lg
+                        mt-2" 
+          onClick={handleSignup}>Login</button>
+    
+        </form> 
       </div>
+      
+      {/* Login Markup */}
       <div className="flex flex-col">
         <h1 className="text-3xl">Login</h1>
         <br/>
         <form>
-          <label className="text-xl">Username:</label> 
+          <label className="text-xl">Email:</label> 
           <br/>
-          <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="text" onChange={e => setUsername(e.target.value) }/> 
+          <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="text" onChange={e => setEmail(e.target.value) }/> 
           <br/>
           <label className="text-xl">Password:</label> 
           <br/>
@@ -89,8 +145,6 @@ export default function LoginComponent() {
           onClick={handleLogin}>Login</button>
     
         </form>        
-      </div>
-      <div>
 
       </div>
       <button onClick={clearSessionData}>Debug Remove SessionData</button>

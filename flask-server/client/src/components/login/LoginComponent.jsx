@@ -4,18 +4,20 @@ import { useNavigate } from 'react-router-dom';
 const PASSWORDLENGTH = '6';
 const NUMBEROFCAPITALLETTERS = '1';
 
-function getToken() {
-  const tokenString = sessionStorage.getItem('token');
-  return tokenString;
-}
+
+// function getToken() {
+//   const tokenString = sessionStorage.getItem('token');
+//   return tokenString;
+// }
 
 export default function LoginComponent() {
 
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoginMode, setIsLoginMode] = useState(true);
 
-  const token = getToken();
+  //const token = getToken();
   const navigate = useNavigate();
 
   // Debugging
@@ -28,9 +30,9 @@ export default function LoginComponent() {
   // }
   //End of Debug
 
-  function clearSessionData() {
-    sessionStorage.clear();
-  }
+  // function clearSessionData() {
+  //   sessionStorage.clear();
+  // }
   // Fetch data from database with username and password
   async function loginUser(credentials) {
     return fetch(`http://localhost:5000/login?`, {
@@ -41,7 +43,9 @@ export default function LoginComponent() {
       body: JSON.stringify(credentials)
     })
    }
-  
+  const changeMode = (event) => {
+    (isLoginMode ? setIsLoginMode(false) : setIsLoginMode(true));
+  }
   const handleLogin = async(event) => {
     event.preventDefault();
 
@@ -81,7 +85,7 @@ export default function LoginComponent() {
     // Check email and password fit requirements
     const emailCheck = /[\w]+@[A-Za-z]+\.(.){3,}/g
     const passLengthCheck = /(.+){6,}/g
-    const passSpecialCharacterCheck = /[-’/`~!#*$@_%+=.,^&(){}[\]|;:”<>?\\]/g
+    const passSpecialCharacterCheck = /[-’/`~!#*$@_%+=.,^&(){}[\]|;:”<>?\\]+/g
     const passUpperCaseCheck = /[A-Z]+/g
 
     let isValidEmail = emailCheck.test(email);
@@ -120,55 +124,69 @@ export default function LoginComponent() {
   }
 
   return(
-    <div className="flex p-11 mx-auto my-auto shadow-lg shadow-emerald-600/50 rounded-md">
+    <div className="flex justify-center place-self-center h-screen w-1/2">
       {/* Sign Up Markup */}
-      <div>
-        <h1 className="text-3xl">Sign Up</h1>
-        <form>
-          <label className="text-xl">Email:</label> 
+      {isLoginMode ? (
+          <div className="transform duration-1000 p-11 mx-4 mt-56 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl my-rotate-y-180">
+          <h1 className="text-3xl">Sign Up</h1>
           <br/>
-          <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="text" onChange={e => setEmail(e.target.value) }/> 
-          <br/>
-          <label className="text-xl">Password:</label> 
-          <br/>
-          <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="password" onChange={e => setPassword(e.target.value) }/> 
-          <br/>
-          <label className="transition duration-200 text-lg text-red-900" onchange="shake" key={errorMessage}>{errorMessage}</label> {errorMessage !== null ? <br/> : ''}
+          <form>
+            <label className="text-xl">Email:</label> 
+            <br/>
+            <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="text" onChange={e => setEmail(e.target.value) }/> 
+            <br/>
+            <label className="text-xl">Password:</label> 
+            <br/>
+            <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="password" onChange={e => setPassword(e.target.value) }/> 
+            <br/>
+            <label className="transition duration-200 text-lg text-red-900" onchange="shake" key={errorMessage}>{errorMessage}</label> {errorMessage !== null ? <br/> : ''}
 
-          <button className="transition duration-200 delay-50 bg-gray-300 text-xl 
-                        shadow-sm shadow-stone-500 rounded-lg px-2 
-                        hover:bg-emerald-200 hover:shadow-lg
-                        mt-2" 
-          onClick={handleSignup}>Login</button>
-    
-        </form> 
-      </div>
+            <button className="transition duration-200 delay-50 bg-gray-300 text-xl 
+                          shadow-sm shadow-stone-500 rounded-lg px-2 
+                          hover:bg-emerald-200 hover:shadow-lg
+                          mt-2" 
+            onClick={handleSignup}>Login</button>
+      
+          </form> 
+        </div>
+      ) : (
+        <div className="p-11 h-96 mx-4 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl ">
+          <button onClick={changeMode}>Switch Mode</button>
+        </div>
+      )}
+      
       
       {/* Login Markup */}
-      <div className="flex flex-col">
-        <h1 className="text-3xl">Login</h1>
-        <br/>
-        <form>
-          <label className="text-xl">Email:</label> 
+      {isLoginMode ? (
+          <div className="p-11 h-96 mx-4 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl ">
+          <button onClick={changeMode}>Switch Mode</button>
+        </div>
+      ) : (
+        <div class="transition duration-1000 delay-100 my-rotate-y-180
+        p-11 min-h-1/6 mx-4 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl">
+          <h1 className="text-3xl">Login</h1>
           <br/>
-          <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="text" onChange={e => setEmail(e.target.value) }/> 
-          <br/>
-          <label className="text-xl">Password:</label> 
-          <br/>
-          <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="password" onChange={e => setPassword(e.target.value) }/> 
-          <br/>
-          <label className="transition duration-200 text-lg text-red-900" onchange="shake" key={errorMessage}>{errorMessage}</label> {errorMessage !== null ? <br/> : ''}
+          <form>
+            <label className="text-xl">Email:</label> 
+            <br/>
+            <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="text" onChange={e => setEmail(e.target.value) }/> 
+            <br/>
+            <label className="text-xl">Password:</label> 
+            <br/>
+            <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="password" onChange={e => setPassword(e.target.value) }/> 
+            <br/>
+            <label className="transition duration-200 text-lg text-red-900" onchange="shake" key={errorMessage}>{errorMessage}</label> {errorMessage !== null ? <br/> : ''}
 
-          <button className="transition duration-200 delay-50 bg-gray-300 text-xl 
-                        shadow-sm shadow-stone-500 rounded-lg px-2 
-                        hover:bg-emerald-200 hover:shadow-lg
-                        mt-2" 
-          onClick={handleLogin}>Login</button>
-    
-        </form>        
-
-      </div>
-      <button onClick={clearSessionData}>Debug Remove SessionData</button>
+            <button className="transition duration-200 delay-50 bg-gray-300 text-xl 
+                          shadow-sm shadow-stone-500 rounded-lg px-2 
+                          hover:bg-emerald-200 hover:shadow-lg
+                          mt-2" 
+            onClick={handleLogin}>Login</button>
+          </form>        
+        </div>
+      )}
+      
+      {/* <button onClick={clearSessionData}>Debug Remove SessionData</button> */}
     </div>      
   );
 }

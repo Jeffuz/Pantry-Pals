@@ -16,7 +16,7 @@ export default function LoginComponent() {
   const [password, setPassword] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoginMode, setIsLoginMode] = useState(true);
-
+  const [isDisplayPass, setIsDisplayPass] = useState(false);
   //const token = getToken();
   const navigate = useNavigate();
 
@@ -34,6 +34,7 @@ export default function LoginComponent() {
   //   sessionStorage.clear();
   // }
   // Fetch data from database with username and password
+
   async function loginUser(credentials) {
     return fetch(`http://localhost:5000/login?`, {
       method: 'POST',
@@ -43,8 +44,19 @@ export default function LoginComponent() {
       body: JSON.stringify(credentials)
     })
    }
+  
+  const handleCheckBox = (event) => {
+
+    console.log(event.target.checked);
+    if(event.target.checked)
+      setIsDisplayPass(true);
+    else
+      setIsDisplayPass(false);
+  }
+
   const changeMode = (event) => {
     (isLoginMode ? setIsLoginMode(false) : setIsLoginMode(true));
+    setIsDisplayPass(false);
   }
   const handleLogin = async(event) => {
     event.preventDefault();
@@ -127,7 +139,7 @@ export default function LoginComponent() {
     <div className="flex justify-center place-self-center h-screen w-1/2">
       {/* Sign Up Markup */}
       {isLoginMode ? (
-          <div className="transform duration-1000 p-11 mx-4 mt-56 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl my-rotate-y-180">
+          <div className="transform duration-1000 delay-50 p-11 mx-4 mt-56 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl my-rotate-y-180">
           <h1 className="text-3xl">Sign Up</h1>
           <br/>
           <form>
@@ -137,7 +149,9 @@ export default function LoginComponent() {
             <br/>
             <label className="text-xl">Password:</label> 
             <br/>
-            <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="password" onChange={e => setPassword(e.target.value) }/> 
+            <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type={isDisplayPass ? "text" : "password" } onChange={e => setPassword(e.target.value) }/> 
+            <br/>
+            <input type="checkbox" otherProps onClick={handleCheckBox}></input> <label>Show Password</label>
             <br/>
             <label className="transition duration-200 text-lg text-red-900" onchange="shake" key={errorMessage}>{errorMessage}</label> {errorMessage !== null ? <br/> : ''}
 
@@ -162,7 +176,7 @@ export default function LoginComponent() {
           <button onClick={changeMode}>Switch Mode</button>
         </div>
       ) : (
-        <div class="transition duration-1000 delay-100 my-rotate-y-180
+        <div class="transition duration-1000 delay-50 my-rotate-y-180
         p-11 min-h-1/6 mx-4 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl">
           <h1 className="text-3xl">Login</h1>
           <br/>
@@ -173,7 +187,9 @@ export default function LoginComponent() {
             <br/>
             <label className="text-xl">Password:</label> 
             <br/>
-            <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type="password" onChange={e => setPassword(e.target.value) }/> 
+            <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type={isDisplayPass ? "text" : "password" } onChange={e => setPassword(e.target.value) }/> 
+            <br/>
+            <input type="checkbox" otherProps onClick={handleCheckBox}></input> <label>Show Password</label>
             <br/>
             <label className="transition duration-200 text-lg text-red-900" onchange="shake" key={errorMessage}>{errorMessage}</label> {errorMessage !== null ? <br/> : ''}
 

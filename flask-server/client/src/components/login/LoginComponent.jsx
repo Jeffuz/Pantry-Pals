@@ -46,8 +46,6 @@ export default function LoginComponent() {
    }
   
   const handleCheckBox = (event) => {
-
-    console.log(event.target.checked);
     if(event.target.checked)
       setIsDisplayPass(true);
     else
@@ -151,7 +149,7 @@ export default function LoginComponent() {
             <br/>
             <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type={isDisplayPass ? "text" : "password" } onChange={e => setPassword(e.target.value) }/> 
             <br/>
-            <input type="checkbox" otherProps onClick={handleCheckBox}></input> <label>Show Password</label>
+            <input type="checkbox" onClick={handleCheckBox}></input> <label>Show Password</label>
             <br/>
             <label className="transition duration-200 text-lg text-red-900" onchange="shake" key={errorMessage}>{errorMessage}</label> {errorMessage !== null ? <br/> : ''}
 
@@ -189,7 +187,7 @@ export default function LoginComponent() {
             <br/>
             <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type={isDisplayPass ? "text" : "password" } onChange={e => setPassword(e.target.value) }/> 
             <br/>
-            <input type="checkbox" otherProps onClick={handleCheckBox}></input> <label>Show Password</label>
+            <input type="checkbox" onClick={handleCheckBox}></input> <label>Show Password</label>
             <br/>
             <label className="transition duration-200 text-lg text-red-900" onchange="shake" key={errorMessage}>{errorMessage}</label> {errorMessage !== null ? <br/> : ''}
 

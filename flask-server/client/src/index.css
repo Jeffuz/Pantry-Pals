@@ -14,9 +14,4 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-@layer utilities{
-  .flip-180{
-    transform: rotateY('180');
-  } 
-}
 

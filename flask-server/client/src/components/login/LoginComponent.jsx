@@ -20,6 +20,7 @@ export default function LoginComponent() {
   //const token = getToken();
   const navigate = useNavigate();
 
+  const [isMatchingPassword, setIsMatchingPassword] = useState(false);
   // Debugging
   // console.log("token", token);
   // if(token) {
@@ -51,7 +52,15 @@ export default function LoginComponent() {
     else
       setIsDisplayPass(false);
   }
+  const checkMatch = (event) => {
+    let retypedPass = event.target.value;
+    if(retypedPass === password) {
+      setIsMatchingPassword(true); 
+    }
+    else  
+      setIsMatchingPassword(false);
 
+  }
   const changeMode = (event) => {
     (isLoginMode ? setIsLoginMode(false) : setIsLoginMode(true));
     setIsDisplayPass(false);
@@ -114,9 +123,11 @@ export default function LoginComponent() {
     if(!isPSpecial)
       setErrorMessage("Password needs at least " + NUMBEROFCAPITALLETTERS + " special character");
     if(!isPUpper)
-      setErrorMessage("Passwords needs at least " + NUMBEROFCAPITALLETTERS + " uppercase letter")
-    
-    if(!isPLength || !isPSpecial || !isPUpper)
+      setErrorMessage("Passwords needs at least " + NUMBEROFCAPITALLETTERS + " uppercase letter");
+    if(!isMatchingPassword)
+      setErrorMessage("Passwords do not match");
+
+    if(!isPLength || !isPSpecial || !isPUpper || !isMatchingPassword)
       return;
 
     //==========================================
@@ -136,7 +147,7 @@ export default function LoginComponent() {
   return(
     <div className="flex justify-center place-self-center h-screen w-1/2">
       {/* Sign Up Markup */}
-      {isLoginMode ? (
+      {!isLoginMode ? (
           <div className="transform duration-1000 delay-50 p-11 mx-4 mt-56 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl my-rotate-y-180">
           <h1 className="text-3xl">Sign Up</h1>
           <br/>
@@ -147,7 +158,11 @@ export default function LoginComponent() {
             <br/>
             <label className="text-xl">Password:</label> 
             <br/>
-            <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type={isDisplayPass ? "text" : "password" } onChange={e => setPassword(e.target.value) }/> 
+            <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type={isDisplayPass ? "text" : "password" } onChange={e => setPassword(e.target.value) }/>
+            <br/>
+            <label className="text-xl">Confirm Password:</label> 
+            <br/>
+            <input className="text-lg p-1 my-1 shadow-sm shadow-stone-300 rounded-lg" type={isDisplayPass ? "text" : "password" } onChange={checkMatch}/>  
             <br/>
             <input type="checkbox" onClick={handleCheckBox}></input> <label>Show Password</label>
             <br/>
@@ -169,7 +184,7 @@ export default function LoginComponent() {
       
       
       {/* Login Markup */}
-      {isLoginMode ? (
+      {!isLoginMode ? (
           <div className="p-11 h-96 mx-4 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl ">
           <button onClick={changeMode}>Switch Mode</button>
         </div>

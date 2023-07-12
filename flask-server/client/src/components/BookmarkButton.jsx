@@ -1,22 +1,28 @@
 import React, { useContext } from 'react'
 import { useState } from 'react';
 
-const BookmarkButton = (rTitle) => {
+const BookmarkButton = (recipeName) => {
   const [isSaved, setIsSaved] = useState(false);
 
-  const recipeName = rTitle;
   
   const bookmarkedColor = 'bg-emerald-500/50';
 
-  console.log(recipeName, "name");
+  //console.log(recipeName, "name");
   // Update server bookmark
   async function handleServerSetBookmark(recipeName, newBookmarkState) {
+    console.log( {
+      "RecipeName": recipeName,
+      "newBookmarkState": newBookmarkState, 
+    });
     return fetch(`http://localhost:5000/bookmark?`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(recipeName, newBookmarkState)
+      body: {
+        "RecipeName": recipeName,
+        "newBookmarkState": newBookmarkState, 
+      }
     })
   }
 
@@ -33,7 +39,7 @@ const BookmarkButton = (rTitle) => {
   const handleClick = (event) => {
     if(isSaved) {
       setIsSaved(false);
-      let result = handleServerSetBookmark()
+      let result = handleServerSetBookmark(recipeName, false)
      }
     else {
       setIsSaved(true);

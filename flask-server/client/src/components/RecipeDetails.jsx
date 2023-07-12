@@ -58,7 +58,7 @@ export function RecipeDetails() {
 
                     <p>Instructions:</p>
                     {renderInstructions()}
-                    <BookmarkButton rTitle={recipe.title}/>
+                    <BookmarkButton recipeName={recipe.title}/>
                 </div>
             ) : (
                 <p>Loading recipe...</p> // Display a loading message while fetching the recipe

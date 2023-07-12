@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import BookmarkButton from './BookmarkButton';
 
 export function RecipeDetails() {
     const { id } = useParams(); // Access the recipe ID from the URL parameter
     const [recipe, setRecipe] = useState(null); // State to store the recipe data
-
+    console.log(id);
     useEffect(() => {
         // Fetch the recipe data from the backend API
         const fetchRecipe = async () => {
@@ -57,6 +58,7 @@ export function RecipeDetails() {
 
                     <p>Instructions:</p>
                     {renderInstructions()}
+                    <BookmarkButton rTitle={recipe.title}/>
                 </div>
             ) : (
                 <p>Loading recipe...</p> // Display a loading message while fetching the recipe

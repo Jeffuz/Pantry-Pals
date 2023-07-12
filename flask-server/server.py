@@ -10,12 +10,26 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/Pantry_Pals"  # MongoDB con
 app.config['CORS_HEADERS'] = 'Content-Type'
 mongo = PyMongo(app)
 
+@app.route("/bookmark/<token>", methods=("GET", "POST"))
+def bookmark(token):
+    try:
+        users = mongo.db.Users;
+
+        user = users.find({"_id": token})
+
+        print(user["Bookmarks"])
+        return {
+            "result": user["Bookmarks"]
+        }
+        pass
+    except Exception as e:
+        return {"error": str(e)}, 500
+
 # Login Token
 @app.route("/login", methods=("GET", "POST"))
 def login():
     # Get List of current users in the database.
     users = mongo.db.Users;
-    print(users);
 
     isValid = False
     validUserID = None

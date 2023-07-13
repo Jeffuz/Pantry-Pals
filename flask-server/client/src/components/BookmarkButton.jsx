@@ -28,9 +28,7 @@ const BookmarkButton = (recipeName) => {
         setIsSaved(false);
     }
 
-    console.log("loading");
     fetchBookmarks();
-
   }, [recipeName]);
 
   //#region Handle Server calls for bookmarks
@@ -74,14 +72,14 @@ const BookmarkButton = (recipeName) => {
     if(isSaved) {
       let response = await handleServerSetBookmark(token, recipeName, false)
       let result = await response.json();
-      console.log(result);
-      setIsSaved(false);
+      if(result["result"] === "Success")
+        setIsSaved(false);
      }
     else {
       let response = await handleServerSetBookmark(token, recipeName, true)
       let result = await response.json();
-      console.log(result);
-      setIsSaved(true);
+      if(result["result"] === "Success")
+        setIsSaved(true);
       
      }
 

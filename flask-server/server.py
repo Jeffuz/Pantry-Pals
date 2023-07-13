@@ -27,7 +27,7 @@ def setBookmark():
         
         userBookmarkList = userData["Bookmarks"]
 
-        print(userBookmarkList, "List Before Button Press")
+        #print(userBookmarkList, "List Before Button Press")
 
         try:
             # Remove Recipe from bookmarks

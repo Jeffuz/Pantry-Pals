@@ -70,14 +70,13 @@ def getBookmark():
                           })
         try:
             userData = user.next()
-            print(userData)
         except Exception as e:
             return {"result": "Fail", "BookmarkState": False}  # Return an error message if an exception occurs
     
 
         return {"result": "Success", "BookmarkState": True}
             
-    return {"result": "Fail", "BookmarkState": False}
+    #return {"result": "Fail", "BookmarkState": False}
 
 #endregion
 @app.route("/login", methods=("GET", "POST"))

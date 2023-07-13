@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const BookmarkButton = (recipeName) => {
-  const [isSaved, setIsSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState(null);
 
   const navigate = useNavigate();
   const bookmarkedColor = 'bg-emerald-500/50';
@@ -21,15 +21,17 @@ const BookmarkButton = (recipeName) => {
 
       
       let isBookedmarked = jResult["BookmarkState"];
-      if(isBookedmarked) {
+
+      if(isBookedmarked)
         setIsSaved(true);
-      }
       else
         setIsSaved(false);
     }
+
     console.log("loading");
     fetchBookmarks();
-  }, []);
+
+  }, [recipeName]);
 
   //#region Handle Server calls for bookmarks
   async function handleServerGetBookmarks(token, recipeName) {
@@ -88,7 +90,14 @@ const BookmarkButton = (recipeName) => {
 
   return(
     <div>
-      <button className={"transition delay-50 p-2 shadow-lg shadow-red-500 pointer-events-auto active:shadow-blue-500 " + ( isSaved ? bookmarkedColor : 'bg-stone-100')} onClick={handleClick}>BookmarkButton</button>
+      {(isSaved !== null) ? (
+              <button className={"transition delay-50 p-2 shadow-lg shadow-red-500 pointer-events-auto active:shadow-blue-500 " 
+              + ( isSaved ? bookmarkedColor : 'bg-stone-100')} 
+              onClick={handleClick}>BookmarkButton</button>
+      ) : (
+        <span>LOADING</span>
+      )}
+
     </div>
   )
 }

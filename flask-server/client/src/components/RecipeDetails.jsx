@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import BookmarkButton from './BookmarkButton';
 
 export function RecipeDetails() {
     const { id } = useParams(); // Access the recipe ID from the URL parameter
@@ -58,7 +57,6 @@ export function RecipeDetails() {
 
                     <p>Instructions:</p>
                     {renderInstructions()}
-                    <BookmarkButton recipeName={recipe.title}/>
                 </div>
             ) : (
                 <p>Loading recipe...</p> // Display a loading message while fetching the recipe

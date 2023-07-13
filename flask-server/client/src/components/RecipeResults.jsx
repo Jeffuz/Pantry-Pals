@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import BookmarkButton from './BookmarkButton';
 
 export function RecipeResults() {
     const location = useLocation();
@@ -33,12 +34,16 @@ export function RecipeResults() {
             {currentRecipes.length > 0 ? (
                 <div>
                     {currentRecipes.map((recipe, index) => (
-                        <Link key={index} to={`/recipe/${encodeURIComponent(recipe.title)}`}>
-                            <div>
-                                <h3>{recipe.title}</h3>
-                            </div>
-                        </Link>
+                        <div className="flex">
+                            <Link key={index} to={`/recipe/${encodeURIComponent(recipe.title)}`}>
+                                <div>
+                                    <h3>{recipe.title}</h3>
+                                </div>
+                            </Link>
+                            <BookmarkButton recipeName={recipe.title}/>
+                        </div>
                     ))}
+                    
                     <div>
                         {currentPage > 1 && (
                             <button onClick={prevPage}>Previous</button>

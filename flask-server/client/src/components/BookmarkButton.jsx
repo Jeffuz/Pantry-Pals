@@ -11,33 +11,45 @@ const BookmarkButton = (recipeName) => {
   
   // First render update check if user database has bookmarked
   useEffect(() => {
-    let token = sessionStorage.getItem('token');
-    console.log(token);
-    if(token === null) // Not logged in 
-      return;
-    // Get user bookmarks and check if bookmark found in list
-    //handleServerGetBookmarks(token, recipeName);
+    const fetchBookmarks = async() => {
+      let token = sessionStorage.getItem('token');
+      console.log(token);
+      if(token === null) // Not logged in 
+        return;
+      // Get user bookmarks and check if bookmark found in list
+      const result = await handleServerGetBookmarks(token, recipeName);
+
+      const jResult = await result.json();
+
+      console.log(jResult, "result");
+      
+      let isBookedmarked = jResult["BookmarkState"];
+      if(isBookedmarked) {
+        setIsSaved(true);
+      }
+      else
+        setIsSaved(false);
+    }
+
+    fetchBookmarks();
   }, []);
 
 
   async function handleServerGetBookmarks(token, recipeName) {
-    return fetch(`http://localhost:5000/bookmark?`, {
+    return fetch(`http://localhost:5000/getBookmark?`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: {
+      body: JSON.stringify({
         "token": token,
-        "recipeName": recipeName
-      }
+        "recipeName": recipeName, 
+      })
     })
-  
   }
 
   // Update server bookmark
-  async function handleServerSetBookmark(recipeName, isAddBookmark) {
-    let token = sessionStorage.getItem('token');
-
+  async function handleServerSetBookmark(token, recipeName, isAddBookmark) {
     return fetch(`http://localhost:5000/setBookmark?`, {
       method: 'POST',
       headers: {
@@ -61,13 +73,13 @@ const BookmarkButton = (recipeName) => {
     }
 
     if(isSaved) {
-      let response = await handleServerSetBookmark(recipeName, false)
+      let response = await handleServerSetBookmark(token, recipeName, false)
       let result = await response.json();
       console.log(result);
       setIsSaved(false);
      }
     else {
-      let response = await handleServerSetBookmark(recipeName, true)
+      let response = await handleServerSetBookmark(token, recipeName, true)
       let result = await response.json();
       console.log(result);
       setIsSaved(true);

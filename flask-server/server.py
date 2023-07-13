@@ -27,7 +27,8 @@ def setBookmark():
         
         userBookmarkList = userData["Bookmarks"]
 
-        print(userBookmarkList, json["recipeName"])
+        print(userBookmarkList, "List Before Button Press")
+        print(json["recipeName"]["recipeName"], "Recipe name")
 
         try:
             # Remove Recipe from bookmarks
@@ -56,10 +57,27 @@ def setBookmark():
         except Exception as e:
             return {"error": "Could Not Add or Remove bookmark from user"}, 808
         
-        return {
-            "result": "Success"
-        }
+        return {"result": "Success"}
+    
+@app.route("/getBookmark", methods=("GET", "POST"))
+def getBookmark():
+    users = mongo.db.Users;
+    if request.method == "POST":
+        json = request.get_json()
+        user = users.find({"_id": ObjectId(json["token"])})
 
+        try:
+            userData = user.next()
+        except Exception as e:
+            return {"error": "User not found in system"}, 900  # Return an error message if an exception occurs
+        
+        userBookmarkList = userData["Bookmarks"]
+        for item in userBookmarkList:
+            print(item, json["recipeName"])
+            if(item == json["recipeName"]):
+                return {"result": "Success", "BookmarkState": True}
+            
+    return {"result": "Fail", "BookmarkState": False}
 #endregion
 @app.route("/login", methods=("GET", "POST"))
 def login():

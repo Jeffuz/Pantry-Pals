@@ -131,10 +131,7 @@ export default function LoginComponent() {
       return;
 
     //==========================================
-    const result = await signupUser({
-      email,
-      password
-    });
+    const result = await signupUser({email, password});
 
     const jResult = await result.json();
     if(jResult.error === '') { // Success Sign up

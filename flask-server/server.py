@@ -1,6 +1,9 @@
 from flask import Flask, request
 from flask_pymongo import PyMongo
 from flask_cors import CORS
+
+from bson import json_util, ObjectId
+import json
 import math
 
 
@@ -9,23 +12,49 @@ cors = CORS(app)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/Pantry_Pals"  # MongoDB connection URI
 app.config['CORS_HEADERS'] = 'Content-Type'
 mongo = PyMongo(app)
+#region Bookmarks
+@app.route("/setBookmark", methods=("GET", "POST"))
+def setBookmark():
+    users = mongo.db.Users;
+    if request.method == "POST":
+        json = request.get_json()
 
-@app.route("/bookmark/<token>", methods=("GET", "POST"))
-def bookmark(token):
-    try:
-        users = mongo.db.Users;
+        user = users.find({"_id": ObjectId(json["token"])})
+        try:
+            userData = user.next()
+        except Exception as e:
+            return {"error": "User not found in system"}, 900  # Return an error message if an exception occurs
+        
+        userBookmarkList = userData["Bookmarks"]
 
-        user = users.find({"_id": token})
+        print(userBookmarkList, json["recipeName"])
 
-        print(user["Bookmarks"])
+        try:
+            # Remove Recipe from bookmarks
+            if not json["isAddBookmark"]: 
+                for item in userBookmarkList:
+                    if item == json["recipeName"]:
+                        userBookmarkList.remove(item)
+            # Add recipe to bookmark
+            else:
+                print("Adding to bookmark")
+                print(str(json["token"]))
+                filter = {"_id": ObjectId(json["token"]) }
+                newKey = { "$push": { "Bookmarks": json["recipeName"]}}
+                try:
+                    users.update_one(filter, newKey)
+
+                except Exception as e:
+                    return {"error": str(e)}, 801
+                print(userBookmarkList)
+        except Exception as e:
+            return {"error": "Could Not Add or Remove bookmark from user"}, 808
+        
         return {
-            "result": user["Bookmarks"]
+            "result": "Success"
         }
-        pass
-    except Exception as e:
-        return {"error": str(e)}, 500
 
-# Login Token
+#endregion
 @app.route("/login", methods=("GET", "POST"))
 def login():
     # Get List of current users in the database.

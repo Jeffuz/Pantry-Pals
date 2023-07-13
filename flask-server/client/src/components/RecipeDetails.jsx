@@ -5,8 +5,7 @@ import BookmarkButton from './BookmarkButton';
 export function RecipeDetails() {
     const { id } = useParams(); // Access the recipe ID from the URL parameter
     const [recipe, setRecipe] = useState(null); // State to store the recipe data
-    console.log(id);
-    
+
     useEffect(() => {
         // Fetch the recipe data from the backend API
         const fetchRecipe = async () => {

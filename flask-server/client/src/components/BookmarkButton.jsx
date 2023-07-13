@@ -21,14 +21,13 @@ const BookmarkButton = (recipeName) => {
 
       
       let isBookedmarked = jResult["BookmarkState"];
-      console.log(isBookedmarked);
       if(isBookedmarked) {
         setIsSaved(true);
       }
       else
         setIsSaved(false);
     }
-
+    console.log("loading");
     fetchBookmarks();
   }, []);
 

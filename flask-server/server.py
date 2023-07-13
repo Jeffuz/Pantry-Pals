@@ -63,20 +63,22 @@ def getBookmark():
     users = mongo.db.Users;
     if request.method == "POST":
         json = request.get_json()
-        user = users.find({"_id": ObjectId(json["token"])})
 
+        # Find user and matching bookmark
+        user = users.find({"$and": 
+                           [{"_id": ObjectId(json["token"])}, {"Bookmarks": {"$elemMatch": json["recipeName"]}}]
+                          })
         try:
             userData = user.next()
+            print(userData)
         except Exception as e:
-            return {"error": "User not found in system"}, 900  # Return an error message if an exception occurs
-        
-        userBookmarkList = userData["Bookmarks"]
-        for item in userBookmarkList:
-            print(item, json["recipeName"])
-            if(item == json["recipeName"]):
-                return {"result": "Success", "BookmarkState": True}
+            return {"result": "Fail", "BookmarkState": False}  # Return an error message if an exception occurs
+    
+
+        return {"result": "Success", "BookmarkState": True}
             
     return {"result": "Fail", "BookmarkState": False}
+
 #endregion
 @app.route("/login", methods=("GET", "POST"))
 def login():

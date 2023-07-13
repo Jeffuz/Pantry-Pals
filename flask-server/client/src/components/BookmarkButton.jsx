@@ -6,14 +6,12 @@ const BookmarkButton = (recipeName) => {
   const [isSaved, setIsSaved] = useState(false);
 
   const navigate = useNavigate();
-  console.log(recipeName.recipeName);
   const bookmarkedColor = 'bg-emerald-500/50';
   
   // First render update check if user database has bookmarked
   useEffect(() => {
     const fetchBookmarks = async() => {
       let token = sessionStorage.getItem('token');
-      console.log(token);
       if(token === null) // Not logged in 
         return;
       // Get user bookmarks and check if bookmark found in list
@@ -21,9 +19,9 @@ const BookmarkButton = (recipeName) => {
 
       const jResult = await result.json();
 
-      console.log(jResult, "result");
       
       let isBookedmarked = jResult["BookmarkState"];
+      console.log(isBookedmarked);
       if(isBookedmarked) {
         setIsSaved(true);
       }
@@ -34,7 +32,7 @@ const BookmarkButton = (recipeName) => {
     fetchBookmarks();
   }, []);
 
-
+  //#region Handle Server calls for bookmarks
   async function handleServerGetBookmarks(token, recipeName) {
     return fetch(`http://localhost:5000/getBookmark?`, {
       method: 'POST',
@@ -62,7 +60,7 @@ const BookmarkButton = (recipeName) => {
       })
     })
   }
-
+  //#endregion
 
 
   const handleClick = async(event) => {

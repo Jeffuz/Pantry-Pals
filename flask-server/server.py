@@ -35,18 +35,24 @@ def setBookmark():
                 for item in userBookmarkList:
                     if item == json["recipeName"]:
                         userBookmarkList.remove(item)
-            # Add recipe to bookmark
-            else:
-                print("Adding to bookmark")
-                print(str(json["token"]))
+                
                 filter = {"_id": ObjectId(json["token"]) }
-                newKey = { "$push": { "Bookmarks": json["recipeName"]}}
+                newKey = { "$pull": { "Bookmarks": json["recipeName"]}}
                 try:
                     users.update_one(filter, newKey)
-
                 except Exception as e:
                     return {"error": str(e)}, 801
-                print(userBookmarkList)
+                
+            # Add recipe to bookmark
+            else:
+                filter = {"_id": ObjectId(json["token"]) }
+                newKey = { "$push": { "Bookmarks": json["recipeName"]}}
+
+                try:
+                    users.update_one(filter, newKey)
+                except Exception as e:
+                    return {"error": str(e)}, 801
+                
         except Exception as e:
             return {"error": "Could Not Add or Remove bookmark from user"}, 808
         

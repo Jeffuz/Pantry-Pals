@@ -7,7 +7,7 @@ export default function Filter() {
     return (
         <div>
             <h1>
-                <Link to="/">Pantry Pal</Link>
+                <Link to="/">Enter your ingredients here and press enter.</Link>
             </h1>
             <FilterComponent/>
         </div>

@@ -142,10 +142,17 @@ export default function LoginComponent() {
   }
 
   return(
+
+
+
+
+
+
     <div className="flex justify-center place-self-center h-screen w-1/2">
       {/* Sign Up Markup */}
       {!isLoginMode ? (
-          <div className="transform duration-1000 delay-50 p-11 mx-4 mt-56 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl my-rotate-y-180">
+          <div className="my-rotate-y-180 duration-1000 delay-400
+          p-11 mx-4 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl">
           <h1 className="text-3xl">Sign Up</h1>
           <br/>
           <form>
@@ -174,20 +181,25 @@ export default function LoginComponent() {
           </form> 
         </div>
       ) : (
-        <div className="p-11 h-96 mx-4 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl ">
-          <button onClick={changeMode}>Switch Mode</button>
+        <div className="my-rotate-x-180 duration-1000 delay-400
+        p-11 h-96 
+        mx-4 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl ">
+          <button onClick={changeMode}>
+            Switch Mode
+          </button>
         </div>
       )}
       
       
       {/* Login Markup */}
       {!isLoginMode ? (
-          <div className="p-11 h-96 mx-4 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl ">
-          <button onClick={changeMode}>Switch Mode</button>
+        <div className="my-rotate-x-180 duration-1000 delay-400
+        p-11 h-96 mx-4 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl ">
+          <button onClick={changeMode}>Switch Mode1</button>
         </div>
       ) : (
-        <div class="transition duration-1000 delay-50 my-rotate-y-180
-        p-11 min-h-1/6 mx-4 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl">
+        <div class="my-rotate-y-180 duration-1000 delay-400
+        p-11 mx-4 my-auto shadow-lg shadow-emerald-600/50 bg-slate-300 rounded-3xl">
           <h1 className="text-3xl">Login</h1>
           <br/>
           <form>
@@ -211,8 +223,6 @@ export default function LoginComponent() {
           </form>        
         </div>
       )}
-      
-      {/* <button onClick={clearSessionData}>Debug Remove SessionData</button> */}
     </div>      
   );
 }
